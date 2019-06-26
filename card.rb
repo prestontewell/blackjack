@@ -15,4 +15,12 @@ class Card
 		end
 	end
 
+	def to_s
+		if show
+			"#{rank} of #{suit}"
+		else
+			"Card is face down."
+		end
+	end
+
 end
