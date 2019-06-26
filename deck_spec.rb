@@ -43,6 +43,12 @@ RSpec.describe Deck do
 	end
 
 	it 'gets a new deck with replace_with' do
+		deck_of_cards = []
+		deck_of_cards.push(Card.new("Hearts", "8"))
+		deck_of_cards.push(Card.new("Hearts", "9"))
+		new_deck = @deck.dup
+		new_deck .replace_with(deck_of_cards)
+		expect(@deck.deck).not_to eq(new_deck.deck)
 	end
 
 end
