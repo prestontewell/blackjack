@@ -171,4 +171,20 @@ RSpec.describe Blackjack do
 		end
 	end
 
+	describe 'Showing Hands' do
+
+		before do
+			@blackjack = Blackjack.new SUITS, RANKS
+			@blackjack.deal
+		end
+
+		it 'Should return the gamer hands' do
+			expect(@blackjack.show_hands).to match(/Player's hand:/)
+			expect(@blackjack.show_hands).to match(/Dealer's hand:/)
+		end
+
+
+
+	end
+
 end
