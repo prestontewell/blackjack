@@ -19,7 +19,7 @@ class Card
 		if show
 			"#{rank} of #{suit}"
 		else
-			"Card is face down."
+			""
 		end
 	end
 

@@ -41,22 +41,36 @@ RSpec.describe Hand do
 		it 'returns correct value with no ace' do
 			card1 = Card.new('Hearts', '8')
 			card2 = Card.new('Clubs', '7')
-
 			@hand.add_card(card1)
 			@hand.add_card(card2)
 			expect(@hand.get_value).to eq(15)
-
 		end
 
 		it 'returns correct value with ace and jack' do
+			card1 = Card.new('Hearts', '8')
+			card2 = Card.new('Clubs', 'Ace')
+			@hand.add_card(card1)
+			@hand.add_card(card2)
+			expect(@hand.get_value).to eq(19)
 		end
 	end
 
 	describe 'hand output' do
 		it 'returns the correct output if show is true for all cards' do
+			card1 = Card.new('Hearts', '8')
+			card2 = Card.new('Clubs', '7')
+			@hand.add_card(card1)
+			@hand.add_card(card2)
+			expect("#{@hand}").to eq("8 of Hearts, 7 of Clubs, Total value: 15")
 		end
 
 		it 'returns the correct output if show is false for one card' do
+			card1 = Card.new('Hearts', 'Ace')
+			card2 = Card.new('Clubs', '7')
+			card1.show = false
+			@hand.add_card(card1)
+			@hand.add_card(card2)
+			expect("#{@hand}").to eq("7 of Clubs, Total value: 7")
 		end
 
 	end
