@@ -27,15 +27,17 @@ class Hand
 	end
 
 	def get_value
-		card_ranks = []
-		result = 0
-		@dealt_cards.each do |card|
-			card_ranks << card.rank
-		end
-		card_ranks.each do |rank|
-			rank = rank.to_sym
-			result += VALUES[rank]
-		end
+		# card_ranks = []
+		# result = 0
+		# @dealt_cards.each do |card|
+		# 	card_ranks << card.rank
+		# end
+		card_ranks = @dealt_cards.map { |card| card.rank }
+		result = card_ranks.reduce(0) { |acc, rank| acc + VALUES[rank.to_sym]}
+		# card_ranks.each do |rank|
+			# rank = rank.to_sym
+			# result += VALUES[rank]
+		# end
 		return result
 	end
 
