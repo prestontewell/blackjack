@@ -3,7 +3,7 @@ require_relative 'deck'
 RSpec.describe Deck do
 	
 	SUITS = ["Hearts", "Spades", "Clubs", "Diamonds"]
-	RANKS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+	RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 
 	before do
 		@deck = Deck.new SUITS, RANKS
