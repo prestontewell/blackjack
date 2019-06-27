@@ -48,4 +48,40 @@ RSpec.describe Blackjack do
 		end
 	end
 	
+	describe 'Dealing cards' do
+
+		before do
+			@blackjack = Blackjack.new SUITS, RANKS
+			@blackjack.deal
+			@player_cards = @blackjack.player_hand.dealt_cards
+			@dealer_cards = @blackjack.dealer_hand.dealt_cards
+		end
+
+		it 'Should return 2 cards for the dealer and the player' do
+			expect(@player_cards.count).to eq(2)
+			expect(@dealer_cards.count).to eq(2)
+		end
+
+		it 'Should not display the dealer first card' do
+			expect(@dealer_cards.first.show).to eq(false)
+		end
+
+		it 'Should end the player turn if blackjack is dealt' do
+			card1 = Card.new('Hearts', '3')
+			card2 = Card.new('Hearts', 'Ace')
+			card3 = Card.new('Hearts', '4')
+			card4 = Card.new('Hearts', 'Jack')
+
+
+			@blackjack = Blackjack.new SUITS, RANKS
+			new_deck = [card2, card1, card4, card3]
+			@blackjack.deck.replace_with(new_deck)
+			@blackjack.deal
+			expect(@blackjack.current_gamer).to eq('Dealer')
+		end
+
+
+
+	end
+
 end
