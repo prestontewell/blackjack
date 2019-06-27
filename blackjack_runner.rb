@@ -7,4 +7,4 @@ game = Blackjack.new SUITS, RANKS
 
 game.deal
 
-puts game.show_hands
+puts game
