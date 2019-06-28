@@ -1,0 +1,20 @@
+> As a Player I can get a hand with two cards in it
+> As a Dealer I can get a hand with two cards in it
+
+* Player and dealer are both dealt hands with the "deal" method from the "Blackjack" class
+
+> As a Player I can see what card the dealer is showing
+
+* Dealer's card can be seen when @current_gamer is set to "Dealer" in "Blackjack" class
+
+> As a Player I can bust (lose immediately) when I am getting cards
+
+* Player  and dealer bust logic is in set_result function in "Blackjack" class 
+
+> As a Player I can blackjack (win immediately) when I am dealt cards (this is a simplification)
+
+* Player blackjack win logic is in while loop in blackjack_runner.rb as well as "Blackjack" class.
+
+> As a Dealer I can draw cards after the player until I win or lose
+
+* Dealer continues to as long as hand < 21 per login in set_result function in "Blackjack" class
