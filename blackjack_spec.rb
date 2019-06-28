@@ -182,8 +182,86 @@ RSpec.describe Blackjack do
 			expect(@blackjack.show_hands).to match(/Player's hand:/)
 			expect(@blackjack.show_hands).to match(/Dealer's hand:/)
 		end
+	end
 
+	describe 'Setting results' do
 
+		before do
+			@blackjack = Blackjack.new SUITS, RANKS
+		end	
+
+		it 'Should return if player busts' do
+			card1 = Card.new('Hearts', '3')
+			card2 = Card.new('Hearts', 'Queen')
+			card3 = Card.new('Hearts', 'King')
+			card4 = Card.new('Hearts', '10')	
+			card5 = Card.new('Hearts', '10')	
+			card6 = Card.new('Hearts', '8')	
+			new_deck = [card1, card2, card3, card4, card5, card6]
+			@blackjack.deck.replace_with(new_deck)
+			@blackjack.deal
+			@blackjack.hit #player bust
+			expect(@blackjack.set_result).to eq('Player busts!')
+		end		
+		
+		it 'Should return if dealer busts' do
+			card1 = Card.new('Hearts', '3')
+			card2 = Card.new('Diamonds', 'Queen')
+			card3 = Card.new('Hearts', 'King')
+			card4 = Card.new('Hearts', '10')	
+			card5 = Card.new('Clubs', '10')	
+			card6 = Card.new('Hearts', 'Jack')	
+			new_deck = [card1, card2, card3, card4, card5, card6]
+			@blackjack.deck.replace_with(new_deck)
+			@blackjack.deal
+			@blackjack.stand #player stands
+			@blackjack.hit #dealer hits and busts
+			expect(@blackjack.set_result).to eq('Dealer busts!')
+		end		
+		
+		it 'Should return if there is a tie' do
+			card1 = Card.new('Hearts', 'Ace')
+			card2 = Card.new('Diamonds', 'Ace')
+			card3 = Card.new('Spades', 'King')
+			card4 = Card.new('Hearts', '10')	
+			card5 = Card.new('Clubs', '10')	
+			card6 = Card.new('Hearts', 'Jack')	
+			new_deck = [card1, card2, card3, card4, card5, card6]
+			@blackjack.deck.replace_with(new_deck)
+			@blackjack.deal
+			@blackjack.hit #player hits
+			@blackjack.stand #player stands with 21
+			@blackjack.hit #dealer hits and stands with 21
+			expect(@blackjack.set_result).to eq('Tie!')
+		end		
+
+		it 'Should return if player wins' do
+			card1 = Card.new('Hearts', 'Ace')
+			card2 = Card.new('Diamonds', 'Ace')
+			card3 = Card.new('Spades', 'King')
+			card4 = Card.new('Hearts', '10')	
+			card5 = Card.new('Clubs', '10')	
+			card6 = Card.new('Hearts', '9')	
+			new_deck = [card1, card2, card3, card4, card5, card6]
+			@blackjack.deck.replace_with(new_deck)
+			@blackjack.deal
+			@blackjack.stand #player stands with 21
+			expect(@blackjack.set_result).to eq('Player wins!')
+		end		
+
+		it 'Should return if dealer wins' do
+			card1 = Card.new('Hearts', 'Ace')
+			card2 = Card.new('Diamonds', 'Ace')
+			card3 = Card.new('Spades', 'King')
+			card4 = Card.new('Hearts', '10')	
+			card5 = Card.new('Clubs', '9')	
+			card6 = Card.new('Hearts', 'Queen')	
+			new_deck = [card1, card2, card3, card4, card5, card6]
+			@blackjack.deck.replace_with(new_deck)
+			@blackjack.deal
+			@blackjack.stand #player stands with 21
+			expect(@blackjack.set_result).to eq('Dealer wins!')
+		end
 
 	end
 
