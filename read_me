@@ -18,3 +18,5 @@
 > As a Dealer I can draw cards after the player until I win or lose
 
 * Dealer continues to as long as hand < 21 per login in set_result function in "Blackjack" class
+
+*********** Use blackjack_runner.rb to play ***************
